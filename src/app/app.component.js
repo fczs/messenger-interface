@@ -9,16 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Messages = (function () {
-    function Messages(id, message, date, owner) {
-        this.id = id;
-        this.message = message;
-        this.date = date;
-        this.owner = owner;
-    }
-    return Messages;
-}());
-exports.Messages = Messages;
+var messages_1 = require('./messages');
 var AppComponent = (function () {
     function AppComponent() {
         this.id = 0;
@@ -33,6 +24,7 @@ var AppComponent = (function () {
             "What did you say?",
         ];
         this.messages = [];
+        this.chatHeight = window.innerHeight - 110 - 155;
     }
     AppComponent.prototype.submitMessage = function (text) {
         var _this = this;
@@ -40,17 +32,21 @@ var AppComponent = (function () {
         if (!text) {
             return;
         }
-        this.date = new Date().toLocaleString();
-        this.owner = 'bg-success';
-        this.messages.push(new Messages(this.id, text, this.date, this.owner));
-        this.id++;
+        this.addMessage(text, 'bg-success');
         setTimeout(function () {
             text = _this.opponentMessages[Math.floor(Math.random() * 7)];
-            _this.date = new Date().toLocaleString();
-            _this.owner = 'bg-info';
-            _this.messages.push(new Messages(_this.id, text, _this.date, _this.owner));
-            _this.id++;
+            _this.addMessage(text, 'bg-info');
         }, 1000);
+    };
+    AppComponent.prototype.addMessage = function (text, owner) {
+        var _this = this;
+        this.date = new Date().toLocaleString();
+        this.owner = owner;
+        this.messages.push(new messages_1.Messages(this.id, text, this.date, this.owner));
+        this.id++;
+        setTimeout(function () {
+            _this.scrollToBottom();
+        }, 100);
     };
     AppComponent.prototype.deleteMessage = function (message) {
         for (var i = 0; i < this.messages.length; i++) {
@@ -62,6 +58,16 @@ var AppComponent = (function () {
     AppComponent.prototype.deleteAll = function () {
         this.messages = [];
     };
+    AppComponent.prototype.scrollToBottom = function () {
+        try {
+            this.scrollMessages.nativeElement.scrollTop = this.scrollMessages.nativeElement.scrollHeight;
+        }
+        catch (err) { }
+    };
+    __decorate([
+        core_1.ViewChild('scrollMessages'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], AppComponent.prototype, "scrollMessages", void 0);
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

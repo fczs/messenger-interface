@@ -10,12 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var Messages = (function () {
-    function Messages(message) {
+    function Messages(id, message, date, owner) {
+        this.id = id;
         this.message = message;
+        this.date = date;
+        this.owner = owner;
     }
     Messages = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [String])
+        __metadata('design:paramtypes', [Number, String, String, String])
     ], Messages);
     return Messages;
 }());

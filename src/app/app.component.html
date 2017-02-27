@@ -17,7 +17,7 @@
         </div>
     </div>
 </header>
-<div class="messenger-body">
+<div class="messenger-body" #scrollMessages [style.height.px]="chatHeight">
     <div class="messenger-container">
         <div class="messages">
             <div class="message {{message.owner}}" *ngFor="let message of messages">

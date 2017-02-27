@@ -1,18 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
-export class Messages {
-    id: number;
-    message: string;
-    date: string;
-    owner: string;
-
-    constructor(id: number, message: string, date: string, owner: string) {
-        this.id = id;
-        this.message = message;
-        this.date = date;
-        this.owner = owner;
-    }
-}
+import { Messages } from './messages';
 
 @Component({
     moduleId: module.id,
@@ -22,6 +10,9 @@ export class Messages {
 })
 
 export class AppComponent {
+    @ViewChild('scrollMessages') scrollMessages: ElementRef;
+
+    chatHeight: number;
     date: string;
     owner: string;
     id: number = 0;
@@ -36,22 +27,30 @@ export class AppComponent {
         "What did you say?",
     ];
     messages: Messages[] = [];
-    
+
+    constructor() {
+        this.chatHeight = window.innerHeight - 110 - 155;
+    }
+
     submitMessage(text: string): void {
         text = text.trim();
         if (!text) { return; }
-        this.date = new Date().toLocaleString();
-        this.owner = 'bg-success';
-        this.messages.push(new Messages(this.id, text, this.date, this.owner));
-        this.id++;
+        this.addMessage(text, 'bg-success');
 
         setTimeout(() => {
             text = this.opponentMessages[Math.floor(Math.random() * 7)];
-            this.date = new Date().toLocaleString();
-            this.owner = 'bg-info';
-            this.messages.push(new Messages(this.id, text, this.date, this.owner));
-            this.id++;
+            this.addMessage(text, 'bg-info');
         }, 1000);
+    }
+
+    addMessage(text: string, owner: string): void {
+        this.date = new Date().toLocaleString();
+        this.owner = owner;
+        this.messages.push(new Messages(this.id, text, this.date, this.owner));
+        this.id++;
+        setTimeout(() => {
+            this.scrollToBottom();
+        }, 100);
     }
 
     deleteMessage(message: Messages): void {
@@ -64,5 +63,11 @@ export class AppComponent {
 
     deleteAll(): void {
         this.messages = [];
+    }
+
+    scrollToBottom(): void {
+        try {
+            this.scrollMessages.nativeElement.scrollTop = this.scrollMessages.nativeElement.scrollHeight;
+        } catch(err) { }
     }
 }
