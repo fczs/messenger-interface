@@ -1,4 +1,6 @@
 .idea
 node_modules
 bower_components
-src
+bower.json
+src/app/*.bak
+.editorconfig

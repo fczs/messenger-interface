@@ -1,0 +1,122 @@
+.navbar {
+    border-radius: 0;
+    height: 55px;
+    padding-top: 11px;
+    border-bottom-color: #cacaca;
+    margin-bottom: 0;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.nav-title {
+    text-align: center;
+    font-size: 19px;
+}
+
+.navbar-toggle {
+    display: block;
+    float: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.messages-header {
+    background-color: #e6e6e6;
+    padding-top: 9px;
+    height: 55px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.messages-header h1 {
+    float: left;
+    margin-top: 4px;
+    margin-left: 38px;
+    font-size: 26px;
+}
+
+.messages-header .btn-group {
+    margin-right: 23px;
+}
+
+.messages-header .btn-group .btn {
+    text-transform: uppercase;
+}
+
+.messages-header .btn-group .btn-default {
+    border-color: #d43f3a;
+    color: #d43f3a;
+}
+
+.messenger-body {
+    margin-top: 110px;
+    padding-top: 20px;
+}
+
+.message {
+    border-radius: 4px;
+    padding: 14px 24px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+
+.message.bg-success {
+    margin-left: 60px;
+}
+
+.btn-delete {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: #ccc;
+    padding: 0;
+    font-size: 15px;
+}
+
+.message-heading .name {
+    font-style: italic;
+    display: inline-block;
+}
+
+.message-body {
+    padding-top: 8px;
+}
+
+footer textarea {
+    width: 100%;
+    border: transparent;
+    border-top: 1px solid #cacaca;
+    resize: none;
+    height: 95px;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+.btn-submit {
+    border: none;
+    color: #fff;
+    background-color: #3c7fb7;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 21px;
+}
+
+.btn-submit .glyphicon {
+    margin-left: -4px;
+    margin-top: 4px;
+}
+
+.modal-content {
+    padding: 15px 20px;
+}
+
+.modal-content.confirm {
+    text-align: center;
+}
+
+.modal-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+}

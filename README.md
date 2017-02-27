@@ -1,2 +1,2 @@
-# messenger-interface
-Messenger interface using angular 2
+# Messenger interface
+Creating messenger interface using Angular 2

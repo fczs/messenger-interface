@@ -1,0 +1,62 @@
+<header>
+    <div class="messenger-container">
+        <nav class="navbar navbar-default">
+            <div class="nav-title">Messenger</div>
+            <button type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </nav>
+        <div class="messages-header clearfix">
+            <h1>Messages</h1>
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-danger" (click)="confirmModal.show()">Export</button>
+                <button type="button" class="btn btn-default" (click)="deleteModal.show()">Delete all</button>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="messenger-body">
+    <div class="messenger-container">
+        <div class="messages">
+            <div class="message {{message.owner}}" *ngFor="let message of messages">
+                <div class="message-heading">
+                    <button type="button" class="btn-delete pull-right" (click)="deleteMessage(message)">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                    <div *ngIf="message.owner == 'bg-info'" class="name">{{opponent}}</div>
+                    <span class="date">({{message.date}})</span>
+                </div>
+                <div class="message-body">
+                    {{message.message}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="messenger-container">
+        <textarea #message></textarea>
+        <button type="button" class="btn-submit pull-right" (click)="submitMessage(message.value); message.value=''">
+            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+        </button>
+    </div>
+</footer>
+<div class="modal fade" bsModal #deleteModal="bs-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-text">Are you sure you want to delete all messages?</div>
+            <button type="button" class="btn btn-default" (click)="deleteModal.hide()">Cancel</button>
+            <button type="button" class="btn btn-default pull-right" (click)="deleteAll(); deleteModal.hide()">Delete</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" bsModal #confirmModal="bs-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content confirm">
+            <div class="modal-text">Export complete</div>
+            <button type="button" class="btn btn-default" (click)="confirmModal.hide()">Close</button>
+        </div>
+    </div>
+</div>
