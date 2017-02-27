@@ -1,6 +1,3 @@
 .idea
 node_modules
-bower_components
-bower.json
-src/app/*.bak
 .editorconfig
